@@ -1,0 +1,31 @@
+﻿@model Course
+
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="@Model.ImageUrl" alt="@Model.Title">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Title</h5>
+            <p class="card-text">@Model.Description</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Category: <b style="color:red">@Model.Category.Name</b></li>
+            <li class="list-group-item">Course Fee: <b>$@Model.Fee </b>
+                @*@if (Model.Active == true)
+                {
+                    "Currently On";
+                }
+                @else
+                {
+                }*@
+            </li>
+            <li class="list-group-item">Duration: @Model.Duration</li>
+        </ul>
+        <div class="card-body">
+ 
+            <a 
+               asp-controller="ShoppingCart"
+               asp-action="AddToShoppingCart"
+               asp-route-courseId=@Model.CourseId
+               class="btn btn-danger">Add to Cart</a>
+            <a href="\course\list" class="btn btn-primary">go back</a>
+        </div>
+    </div>

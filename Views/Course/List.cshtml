@@ -1,0 +1,29 @@
+﻿@model LearnOnline.ViewModels.CourseListVM
+
+@*<h1>@Model.SelectedCategory</h1>*@
+
+
+    @foreach (var course in Model.Courses)
+    {
+
+        <div class="card mx-auto" style="width: 18rem;">
+            <img class="card-img-top" src="@course.ImageUrl" alt="@course.Title">
+            <div class="card-body">
+                <h3 hidden> @course.CourseId </h3>
+                <h5 class="card-title">@course.Title</h5>
+                <p class="card-text">@course.Description</p>
+                <p class="card-text"><b>$@course.Fee</b></p>
+                <a asp-controller="Course" asp-action="Details" asp-route-id="@course.CourseId" class="btn btn-primary">
+                    Course Details
+                </a>
+                <a asp-controller="ShoppingCart"
+                   asp-action="AddToShoppingCart"
+                   asp-route-courseId=@course.CourseId
+                   class="btn btn-primary">Add to Cart</a>
+            </div>
+        </div>
+
+    <hr />
+
+}
+

@@ -1,0 +1,38 @@
+﻿@model EFShoppingCartRepo
+
+<h2> Shopping Cart</h2>
+
+<div>
+    <table class="tabke table-bordered" width="800px">
+
+        <tr class="text-center">
+            <th>Course</th>
+            <th>Description</th>
+            <th >Fee ($)</th>
+        </tr>
+
+        @foreach (var item in Model.shoppingCartItems)
+        {
+            <tr>
+                <td class="text-left">@item.course.Title</td>
+                <td class="text-left">@item.course.Description</td>
+                <td class="text-right">@item.Amount</td>
+                <td class="text-center"><a  
+               asp-controller="ShoppingCart"
+               asp-action="RemoveFromShoppingCart"
+               asp-route-courseId=@item.course.CourseId
+             class="card-link" style="color:red">Remove</a></td>
+            </tr>
+        }
+        <tr>
+            <th><b>Total</b></th>
+            <th></th>
+            <th class="text-right"><b >@Model.GetShoppingCartTotal()</b></th>
+
+        </tr>
+
+    </table>
+    <a href="\course\list" class="btn btn-danger">continue shopping</a>
+    <a href="#" class="btn btn-primary">Check Out</a>
+
+</div>
